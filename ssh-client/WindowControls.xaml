@@ -3,13 +3,14 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:custom="clr-namespace:ssh_client"
 	mc:Ignorable="d"
 	x:Class="ssh_client.WindowControls"
 	x:Name="UserControl"
 	d:DesignWidth="90" d:DesignHeight="30">
 
 	<UserControl.Resources>
-		<Style x:Key="WindowControlMinimise" TargetType="Button">
+		<Style x:Key="WindowControlMinimize" TargetType="Button">
 			<Setter Property="Background" Value="White" />
 			<Setter Property="Foreground" Value="#FF818181" />
 			<Setter Property="Template">
@@ -30,7 +31,7 @@
 			</Setter>
 		</Style>
 
-		<Style x:Key="WindowControlMaximise" TargetType="Button">
+		<Style x:Key="WindowControlMaximize" TargetType="Button">
 			<Setter Property="Background" Value="White" />
 			<Setter Property="Foreground" Value="#FF818181" />
 			<Setter Property="Template">
@@ -74,8 +75,8 @@
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
-		<Button Style="{StaticResource WindowControlMinimise}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-60,0,60,0" />
-		<Button Style="{StaticResource WindowControlMaximise}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-30,0,30,0" />
-		<Button Style="{StaticResource WindowControlClose}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,0,0" />
+		<Button Style="{StaticResource WindowControlMinimize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-60,0,60,0" Click="MinimiseButtonClick" />
+		<Button Style="{StaticResource WindowControlMaximize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-30,0,30,0" Click="MaximizeButtonClick" />
+		<Button Style="{StaticResource WindowControlClose}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,0,0" Click="CloseButtonClick" />
 	</Grid>
 </UserControl>
