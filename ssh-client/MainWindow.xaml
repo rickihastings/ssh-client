@@ -4,7 +4,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ssh_client="clr-namespace:ssh_client" mc:Ignorable="d" x:Class="CustomWPFWindowShaddow.MainWindow"
     Title="MainWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Height="546" Width="896" BorderThickness="0" Padding="0" Grid.IsSharedSizeScope="True" ResizeMode="CanResizeWithGrip" Background="Transparent">
 
-	
+	<Window.Resources>
+		<Style x:Key="ShadowStyle">
+			<Setter Property="Control.Foreground" Value="LightGray" />
+		</Style>
+
+		<Style x:Key="CustomButton" TargetType="Button">
+			<Setter Property="Background" Value="LightGray" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Name="border" BorderThickness="0" Padding="2,1" CornerRadius="0" Background="{TemplateBinding Background}">
+							<Grid>
+								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="contentShadow" Style="{StaticResource ShadowStyle}">
+									<ContentPresenter.RenderTransform>
+										<TranslateTransform X="1.0" Y="1.0" />
+									</ContentPresenter.RenderTransform>
+								</ContentPresenter>
+								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content" />
+							</Grid>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FF5C8AEC" />
+								<Setter Property="Foreground" Value="LightGray" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
 
 	<Grid Margin="5">
 		<Rectangle x:Name="outerBox" Fill="#FFF">
@@ -13,6 +43,7 @@
 			</Rectangle.Effect>
 		</Rectangle>
 		<TextBlock HorizontalAlignment="Left" Height="110" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="162"/>
-		<ssh_client:CustomButton Margin="355,240,461,266"/>
+		<Button Style="{StaticResource CustomButton}" Content="Button" Width="70" Height="30" Margin="193,172,623,334" />
+		<ssh_client:WindowControls HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Width="90"/>
 	</Grid>
 </Window>

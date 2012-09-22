@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace ssh_client
 {
 	/// <summary>
-	/// Interaction logic for CustomButton.xaml
+	/// Interaction logic for WindowControls.xaml
 	/// </summary>
-	public partial class CustomButton : UserControl
+	public partial class WindowControls : UserControl
 	{
-		public CustomButton()
+		public WindowControls()
 		{
 			this.InitializeComponent();
 		}
