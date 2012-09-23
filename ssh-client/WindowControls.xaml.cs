@@ -29,14 +29,14 @@ namespace ssh_client
 			this.InitializeComponent();
         }
 		
-		protected void MinimiseButtonClick(object sender, RoutedEventArgs e)
+		protected void OnMinimiseButtonClick(object sender, RoutedEventArgs e)
 		{
 			// Get the window, and change it to Minimized
 			Window window = Window.GetWindow(this);
 			window.WindowState = WindowState.Minimized;
 		}
 		
-		protected void MaximizeButtonClick(object sender, RoutedEventArgs e)
+		protected void OnMaximizeButtonClick(object sender, RoutedEventArgs e)
 		{
 			// Get the window, and determine whether we need to maximise it or not.
 			Window window = Window.GetWindow(this);
@@ -78,7 +78,7 @@ namespace ssh_client
 			}
 		}
 		
-		protected void CloseButtonClick(object sender, RoutedEventArgs e)
+		protected void OnCloseButtonClick(object sender, RoutedEventArgs e)
 		{
 			// shutdown the application properly
 			ssh_client.App.Current.Shutdown();

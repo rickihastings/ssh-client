@@ -1,7 +1,4 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:custom="clr-namespace:ssh_client" xmlns:ec="http://schemas.microsoft.com/expression/2010/controls"
-	x:Class="ssh_client.WindowControls"
-	x:Name="UserControl"
-	d:DesignWidth="90" d:DesignHeight="30" mc:Ignorable="d">
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:custom="clr-namespace:ssh_client" xmlns:ec="http://schemas.microsoft.com/expression/2010/controls" x:Class="ssh_client.WindowControls" x:Name="UserControl" d:DesignWidth="90" d:DesignHeight="30" mc:Ignorable="d">
 
 	<UserControl.Resources>
 		<Style x:Key="WindowControlMinimize" TargetType="{x:Type Button}">
@@ -94,8 +91,8 @@
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
-		<Button Style="{StaticResource WindowControlMinimize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-60,0,60,0" Click="MinimiseButtonClick" />
-		<Button x:Name="MaximizeButton" Style="{DynamicResource WindowControlMaximize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-30,0,30,0" Click="MaximizeButtonClick" />
-		<Button Style="{StaticResource WindowControlClose}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,0,0" Click="CloseButtonClick" />
+		<Button x:Name="MinimizeButton" Style="{StaticResource WindowControlMinimize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-60,0,60,0" Click="OnMinimiseButtonClick" />
+		<Button x:Name="MaximizeButton" Style="{DynamicResource WindowControlMaximize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-30,0,30,0" Click="OnMaximizeButtonClick" />
+		<Button x:Name="CloseButton" Style="{StaticResource WindowControlClose}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,0,0" Click="OnCloseButtonClick" />
 	</Grid>
 </UserControl>

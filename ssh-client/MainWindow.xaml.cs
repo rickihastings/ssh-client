@@ -16,12 +16,14 @@ namespace ssh_client
 	/// <summary>
 	/// Interaction logic for Window1.xaml
 	/// </summary>
-
-	public partial class MainWindow : System.Windows.Window
+	public partial class MainWindow : Window
 	{
-        public MainWindow()
+		public MainWindow()
 		{
-			//this.InitializeComponent();
+			this.InitializeComponent();
+			
+			// Provide dragging functionality
+			this.MouseLeftButtonDown += (o, e) => DragMove();
 		}
     }
 }
