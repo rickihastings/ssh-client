@@ -40,6 +40,8 @@ namespace ssh_client
 		{
 			// Get the window, and determine whether we need to maximise it or not.
 			Window window = Window.GetWindow(this);
+			Button item = (Button) LayoutRoot.FindName("MaximizeButton");
+			
 			if (!this.WindowMaximized)
 			{
 				// save current dimensions
@@ -56,6 +58,8 @@ namespace ssh_client
 				window.Top = -5;
 				window.ResizeMode = ResizeMode.NoResize;
 				
+				// change the button style
+				item.Style = FindResource("WindowControlRestore") as Style;
 			}
             else
 			{
@@ -68,6 +72,9 @@ namespace ssh_client
 				window.Left = this.WindowLeft;
 				window.Top = this.WindowTop;
 				window.ResizeMode = ResizeMode.CanResizeWithGrip;
+				
+				// change the button style
+				item.Style = FindResource("WindowControlMaximize") as Style;
 			}
 		}
 		
