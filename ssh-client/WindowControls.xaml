@@ -3,7 +3,7 @@
 	<UserControl.Resources>
 		<Style x:Key="WindowControlMinimize" TargetType="{x:Type Button}">
 			<Setter Property="Background" Value="White" />
-			<Setter Property="Foreground" Value="#FF818181" />
+			<Setter Property="Foreground" Value="#FF959595" />
 			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 			<Setter Property="Template">
 				<Setter.Value>
@@ -16,6 +16,7 @@
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter Property="Background" Value="#FFE0E0E0" />
+								<Setter Property="Foreground" Value="#FF414141" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -25,7 +26,7 @@
 
 		<Style x:Key="WindowControlMaximize" TargetType="{x:Type Button}">
 			<Setter Property="Background" Value="White" />
-			<Setter Property="Foreground" Value="#FF818181" />
+			<Setter Property="Foreground" Value="#FF959595" />
 			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 			<Setter Property="Template">
 				<Setter.Value>
@@ -38,6 +39,7 @@
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter Property="Background" Value="#FFE0E0E0" />
+								<Setter Property="Foreground" Value="#FF414141" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -47,7 +49,7 @@
 
 		<Style x:Key="WindowControlRestore" TargetType="{x:Type Button}">
 			<Setter Property="Background" Value="White" />
-			<Setter Property="Foreground" Value="#FF818181" />
+			<Setter Property="Foreground" Value="#FF959595" />
 			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 			<Setter Property="Template">
 				<Setter.Value>
@@ -60,6 +62,7 @@
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter Property="Background" Value="#FFE0E0E0" />
+								<Setter Property="Foreground" Value="#FF414141" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -82,6 +85,7 @@
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter Property="Background" Value="#FFE0E0E0" />
+								<Setter Property="Foreground" Value="#FF414141" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -91,8 +95,8 @@
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
-		<Button x:Name="MinimizeButton" Style="{StaticResource WindowControlMinimize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-60,0,60,0" Click="OnMinimiseButtonClick" />
-		<Button x:Name="MaximizeButton" Style="{DynamicResource WindowControlMaximize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-30,0,30,0" Click="OnMaximizeButtonClick" />
-		<Button x:Name="CloseButton" Style="{StaticResource WindowControlClose}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,0,0" Click="OnCloseButtonClick" />
+		<Button x:Name="MinimizeButton" Style="{StaticResource WindowControlMinimize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-60,0,60,0" />
+		<Button x:Name="MaximizeButton" Style="{DynamicResource WindowControlMaximize}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="-30,0,30,0" />
+		<Button x:Name="CloseButton" Style="{StaticResource WindowControlClose}" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,0,0" />
 	</Grid>
 </UserControl>

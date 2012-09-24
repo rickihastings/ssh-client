@@ -27,16 +27,22 @@ namespace ssh_client
 		public WindowControls()
 		{
 			this.InitializeComponent();
+			
+			// bind events, do this in code not XAML. It's annoying to keep
+			// track of my event bindings in hundreds of lines of XAML code.
+			this.MinimizeButton.Click += (o, e) => this.OnMinimizeButtonClick();
+			this.MaximizeButton.Click += (o, e) => this.OnMaximizeButtonClick();
+			this.CloseButton.Click += (o, e) => this.OnCloseButtonClick();
         }
 		
-		protected void OnMinimiseButtonClick(object sender, RoutedEventArgs e)
+		public void OnMinimizeButtonClick()
 		{
 			// Get the window, and change it to Minimized
 			Window window = Window.GetWindow(this);
 			window.WindowState = WindowState.Minimized;
 		}
 		
-		protected void OnMaximizeButtonClick(object sender, RoutedEventArgs e)
+		public void OnMaximizeButtonClick()
 		{
 			// Get the window, and determine whether we need to maximise it or not.
 			Window window = Window.GetWindow(this);
@@ -78,7 +84,7 @@ namespace ssh_client
 			}
 		}
 		
-		protected void OnCloseButtonClick(object sender, RoutedEventArgs e)
+		public void OnCloseButtonClick()
 		{
 			// shutdown the application properly
 			ssh_client.App.Current.Shutdown();

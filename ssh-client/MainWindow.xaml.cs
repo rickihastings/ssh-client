@@ -22,8 +22,27 @@ namespace ssh_client
 		{
 			this.InitializeComponent();
 			
-			// Provide dragging functionality
-			this.MouseLeftButtonDown += (o, e) => DragMove();
+			// Bind our events
+			this.MouseLeftButtonDown += OnMouseLeftButtonDown;
+			this.AddConnectionButton.Click += (o, e) => this.OnAddConnectionButtonClick();
+		}
+		
+		public void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs args)
+		{
+			if (args.ClickCount == 2)
+			{
+				WindowControls wc = (WindowControls) LayoutRoot.FindName("WindowControls");
+				wc.OnMaximizeButtonClick();
+			}
+			else
+			{
+				DragMove();
+			}
+		}
+		
+		public void OnAddConnectionButtonClick()
+		{
+			this.AddConnectionForm.Visibility = Visibility.Visible;
 		}
     }
 }
