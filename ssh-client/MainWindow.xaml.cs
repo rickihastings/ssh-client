@@ -20,11 +20,11 @@ namespace ssh_client
 	{
 		public MainWindow()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 			
 			// Bind our events
-			this.MouseLeftButtonDown += OnMouseLeftButtonDown;
-			this.AddConnectionButton.Click += (o, e) => this.OnAddConnectionButtonClick();
+			MouseLeftButtonDown += OnMouseLeftButtonDown;
+			AddConnectionButton.Click += (o, e) => OnAddConnectionButtonClick();
 		}
 		
 		public void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs args)
@@ -42,7 +42,7 @@ namespace ssh_client
 		
 		public void OnAddConnectionButtonClick()
 		{
-			this.AddConnectionForm.Visibility = Visibility.Visible;
+			AddConnectionForm.Visibility = Visibility.Visible;
 		}
     }
 }

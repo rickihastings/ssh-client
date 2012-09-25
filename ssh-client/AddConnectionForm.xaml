@@ -43,9 +43,25 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+
+		<Style x:Key="Input1Arrow" TargetType="Path">
+			<Setter Property="Margin" Value="11,34.451,0,0" />
+		</Style>
+
+		<Style x:Key="Input2Arrow" TargetType="Path">
+			<Setter Property="Margin" Value="11,84.451,0,0" />
+		</Style>
+
+		<Style x:Key="Input3Arrow" TargetType="Path">
+			<Setter Property="Margin" Value="11,134.451,0,0" />
+		</Style>
+
+		<Style x:Key="Input4Arrow" TargetType="Path">
+			<Setter Property="Margin" Value="11,184.451,0,0" />
+		</Style>
 	</UserControl.Resources>
 
-	<Grid>
+	<Grid x:Name="LayoutRoot">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="500" />
 			<ColumnDefinition Width="*" />
@@ -66,20 +82,25 @@
 			</Grid.ColumnDefinitions>
 
 			<TextBlock Grid.Row="1" HorizontalAlignment="Right" Height="30" Margin="-12,10,12,0" TextWrapping="Wrap" Text="Session name" VerticalAlignment="Top" Width="176" Padding="4,6" FlowDirection="RightToLeft"/>
-			<TextBox Style="{StaticResource InputBox}" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="" />
+			<TextBox x:Name="InputBox1" Style="{StaticResource InputBox}" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="" />
 		
 			<TextBlock Grid.Row="2" HorizontalAlignment="Right" Height="30" Margin="-12,10,12,0" TextWrapping="Wrap" Text="Hostname or IP Address" VerticalAlignment="Top" Width="176" Padding="4,6" FlowDirection="RightToLeft"/>
-			<TextBox Style="{StaticResource InputBox}" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Text="" />
+			<TextBox x:Name="InputBox2" Style="{StaticResource InputBox}" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" Text="" />
 	
 			<TextBlock Grid.Row="3" HorizontalAlignment="Right" Height="30" Margin="-12,10,12,0" TextWrapping="Wrap" Text="SSH Port" VerticalAlignment="Top" Width="176" Padding="4,6" FlowDirection="RightToLeft"/>
-			<TextBox Style="{StaticResource InputBox}" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="" />
+			<TextBox x:Name="InputBox3" Style="{StaticResource InputBox}" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="" />
 	
 			<TextBlock Grid.Row="4" HorizontalAlignment="Right" Height="30" Margin="-12,10,12,0" TextWrapping="Wrap" Text="(Login username (optional" VerticalAlignment="Top" Width="176" Padding="4,6" FlowDirection="RightToLeft"/>
-			<TextBox Style="{StaticResource InputBox}" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" Text="" />
+			<TextBox x:Name="InputBox4" Style="{StaticResource InputBox}" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" Text="" />
 		
 			<Button Content="Add Session" Style="{StaticResource CustomButton}" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Height="27.5" Margin="12,10,0,10" />
 			<Button Content="Connect" Style="{StaticResource CustomButton}" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Height="27.5" Margin="113,10,0,0" />
 		</Grid>
 
+		<Path x:Name="InputArrow" Style="{StaticResource Input1Arrow}" RenderOptions.EdgeMode="Aliased" Stretch="Fill" Fill="#FFFFFF80" Data="F1 M 4.728,0.234667L 4.728,3.90133L 4.69733,3.87067L -3.17891e-007,8.568L 4.69733,13.3027L 4.728,13.2653L 4.728,17.3333L 14.932,17.3333L 14.932,0.234667" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="27" Visibility="Hidden" />
+		<Rectangle x:Name="InfoBoxBorder" Grid.Column="1" Fill="#FFB0B0B0" Margin="20,20,20,0" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Height="210" Visibility="Hidden" />
+		<Rectangle x:Name="InfoBox" Grid.Column="1" Fill="#FFFFFF80" Margin="20,20,21,21" VerticalAlignment="Top" Height="209" Visibility="Hidden" />
+		<TextBlock x:Name="TextBoxTitle" Grid.Column="1" Height="43" Margin="20,20,21,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Padding="15,10,0,0" />
+		<TextBlock x:Name="TextBoxContent" Grid.Column="1" Margin="20,63.549,21,0" TextWrapping="Wrap" Padding="15,10,10,0" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Height="165.451" />
 	</Grid>
 </UserControl>

@@ -47,7 +47,7 @@
 		<Path Grid.ColumnSpan="2" Data="M0,117.5 L225,117.5" Fill="Black" HorizontalAlignment="Left" Height="1" Margin="-1,63,0,0" Stretch="Fill" Stroke="#FF5C8AEC" StrokeThickness="2" VerticalAlignment="Top" Width="227" Grid.Row="1"/>
 
 		<Grid Grid.Column="1" Grid.Row="1">
-			<ssh_client:AddConnectionForm x:Name="AddConnectionForm" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Hidden" />
+			<ssh_client:AddConnectionForm x:Name="AddConnectionForm" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Hidden" Width="Auto" Height="Auto" />
 		</Grid>
 	</Grid>
 </Window>

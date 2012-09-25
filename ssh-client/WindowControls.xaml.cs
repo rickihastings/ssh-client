@@ -26,13 +26,13 @@ namespace ssh_client
 		
 		public WindowControls()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 			
 			// bind events, do this in code not XAML. It's annoying to keep
 			// track of my event bindings in hundreds of lines of XAML code.
-			this.MinimizeButton.Click += (o, e) => this.OnMinimizeButtonClick();
-			this.MaximizeButton.Click += (o, e) => this.OnMaximizeButtonClick();
-			this.CloseButton.Click += (o, e) => this.OnCloseButtonClick();
+			MinimizeButton.Click += (o, e) => OnMinimizeButtonClick();
+			MaximizeButton.Click += (o, e) => OnMaximizeButtonClick();
+			CloseButton.Click += (o, e) => OnCloseButtonClick();
         }
 		
 		public void OnMinimizeButtonClick()
@@ -48,14 +48,14 @@ namespace ssh_client
 			Window window = Window.GetWindow(this);
 			Button item = (Button) LayoutRoot.FindName("MaximizeButton");
 			
-			if (!this.WindowMaximized)
+			if (!WindowMaximized)
 			{
 				// save current dimensions
-				this.WindowMaximized = true;
-				this.WindowHeight = window.Height;
-				this.WindowWidth = window.Width;
-				this.WindowLeft = window.Left;
-				this.WindowTop = window.Top;
+				WindowMaximized = true;
+				WindowHeight = window.Height;
+				WindowWidth = window.Width;
+				WindowLeft = window.Left;
+				WindowTop = window.Top;
 				
 				// new dimensions (maximized)
 				window.Height = SystemParameters.WorkArea.Height + 10;
@@ -70,13 +70,13 @@ namespace ssh_client
             else
 			{
                 // alter windowMaximized variable
-				this.WindowMaximized = false;
+				WindowMaximized = false;
 				
 				// new dimensions (minimized)
-				window.Height = this.WindowHeight;
-				window.Width = this.WindowWidth;
-				window.Left = this.WindowLeft;
-				window.Top = this.WindowTop;
+				window.Height = WindowHeight;
+				window.Width = WindowWidth;
+				window.Left = WindowLeft;
+				window.Top = WindowTop;
 				window.ResizeMode = ResizeMode.CanResizeWithGrip;
 				
 				// change the button style
