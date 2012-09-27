@@ -1,20 +1,76 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ssh_client="clr-namespace:ssh_client" mc:Ignorable="d" x:Class="ssh_client.MainWindow" Title="MainWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" BorderThickness="0" Padding="0" Grid.IsSharedSizeScope="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Width="1100" Height="620" MinWidth="725" MinHeight="500">
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ssh_client="clr-namespace:ssh_client" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" mc:Ignorable="d" x:Class="ssh_client.MainWindow" Title="MainWindow" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" BorderThickness="0" Padding="0" Grid.IsSharedSizeScope="True" ResizeMode="CanResizeWithGrip" Background="Transparent" Width="1100" Height="620" MinWidth="725" MinHeight="500">
 
 	<Window.Resources>
-		<Style x:Key="LeftBarButton" TargetType="Button">
+		<Style x:Key="LeftBarButton" TargetType="{x:Type Button}">
 			<Setter Property="Background" Value="LightGray" />
 			<Setter Property="Height" Value="32.5" />
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 			<Setter Property="Template">
 				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Border Name="border" BorderThickness="0" Padding="10,0" CornerRadius="0" Background="{TemplateBinding Background}">
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border x:Name="border" BorderThickness="0" Padding="10,0" CornerRadius="0" Background="{TemplateBinding Background}">
 							<Grid>
-								<ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Name="content" />
+								<ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="content" />
 							</Grid>
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter Property="Background" Value="#FF5C8AEC" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="ScrollTop" TargetType="{x:Type Button}">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="Foreground" Value="#FF7E7E7E" />
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border x:Name="ScrollTopButton" BorderThickness="0" Margin="0,0,0,1" CornerRadius="0" Background="{TemplateBinding Background}">
+							<Grid>
+								<Path Data="M 5.59 5.8 L 10 10 1.2 10 Z" StrokeThickness="1" Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" HorizontalAlignment="Center" Margin="0,0,0,7.5" VerticalAlignment="Bottom" />
+							</Grid>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FFE0E0E0" />
+								<Setter Property="Foreground" Value="#FF414141" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="ScrollDown" TargetType="{x:Type Button}">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="Foreground" Value="#FF7E7E7E" />
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border x:Name="ScrollDownButton" BorderThickness="0" Margin="0,1,0,0" CornerRadius="0" Background="{TemplateBinding Background}">
+							<Grid>
+								<Path Data="M 5.59 5.8 L 10 10 1.2 10 Z" StrokeThickness="1" Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" Margin="0,7.5,0,0" >
+									<Path.RenderTransform>
+										<TransformGroup>
+											<ScaleTransform/>
+											<SkewTransform/>
+											<RotateTransform Angle="180"/>
+											<TranslateTransform/>
+										</TransformGroup>
+									</Path.RenderTransform>
+								</Path>
+							</Grid>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FFE0E0E0" />
+								<Setter Property="Foreground" Value="#FF414141" />
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -44,10 +100,33 @@
 		<Rectangle x:Name="leftBox" Fill="#FFF0F0F0" Grid.Column="0" StrokeThickness="0" Grid.RowSpan="2" />
 		
 		<Button x:Name="AddConnectionButton" Content="Add a new connection" Margin="0,29,0,0" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Grid.Row="1" />
-		<Path Grid.ColumnSpan="2" Data="M0,117.5 L225,117.5" Fill="Black" HorizontalAlignment="Left" Height="1" Margin="-1,63,0,0" Stretch="Fill" Stroke="#FF5C8AEC" StrokeThickness="2" VerticalAlignment="Top" Width="227" Grid.Row="1"/>
+		<Path Grid.ColumnSpan="2" Data="M0,117.5 L225,117.5" HorizontalAlignment="Left" Height="1" Margin="-1,63,0,0" Stretch="Fill" Stroke="#FF5C8AEC" StrokeThickness="2" VerticalAlignment="Top" Width="227" Grid.Row="1"/>
 
 		<Grid Grid.Column="1" Grid.Row="1">
 			<ssh_client:AddConnectionForm x:Name="AddConnectionForm" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Hidden" Width="Auto" Height="Auto" />
+		</Grid>
+		
+		<Grid Margin="0,64,0,0" Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="20" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="20" />
+			</Grid.RowDefinitions>
+
+			<Button x:Name="ScrollTopButton" Style="{StaticResource ScrollTop}" Content="Button" Margin="0" /> 
+			<Button x:Name="ScrollDownButton" Style="{StaticResource ScrollDown}" Content="Button" Margin="0" Grid.Row="2" /> 
+			
+			<ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" x:Name="ConnectionPanel">
+				<StackPanel Margin="0" Orientation="Vertical">
+					<Button x:Name="AddConnectionButton_Copy" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button x:Name="AddConnectionButton_Copy1" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button x:Name="AddConnectionButton_Copy2" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button x:Name="AddConnectionButton_Copy3" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button x:Name="AddConnectionButton_Copy4" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button x:Name="AddConnectionButton_Copy5" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button x:Name="AddConnectionButton_Copy6" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+				</StackPanel>
+			</ScrollViewer>
 		</Grid>
 	</Grid>
 </Window>

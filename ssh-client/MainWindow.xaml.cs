@@ -24,7 +24,9 @@ namespace ssh_client
 			
 			// Bind our events
 			MouseLeftButtonDown += OnMouseLeftButtonDown;
-			AddConnectionButton.Click += (o, e) => OnAddConnectionButtonClick();
+			AddConnectionButton.Click += (o, e) => AddConnectionForm.Visibility = Visibility.Visible;;
+			ScrollTopButton.Click += (o, e) => OnScrollTopButtonClick();
+			ScrollDownButton.Click += (o, e) => OnScrollDownButtonClick();
 		}
 		
 		public void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs args)
@@ -40,9 +42,14 @@ namespace ssh_client
 			}
 		}
 		
-		public void OnAddConnectionButtonClick()
+		public void OnScrollTopButtonClick()
 		{
-			AddConnectionForm.Visibility = Visibility.Visible;
+			ConnectionPanel.ScrollToVerticalOffset(ConnectionPanel.VerticalOffset - 16);
+		}
+		
+		public void OnScrollDownButtonClick()
+		{
+			ConnectionPanel.ScrollToVerticalOffset(ConnectionPanel.VerticalOffset + 16);
 		}
     }
 }

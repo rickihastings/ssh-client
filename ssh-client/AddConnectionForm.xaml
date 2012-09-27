@@ -62,12 +62,16 @@
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="500" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 
-		<Grid Margin="0,0,0,0" Grid.Column="0">
+		<Grid Margin="0,0,0,0" Grid.Row="1" Grid.Column="0">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="23" />
 				<RowDefinition Height="50" />
@@ -97,10 +101,10 @@
 			<Button Content="Connect" Style="{StaticResource CustomButton}" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Height="27.5" Margin="113,10,0,0" />
 		</Grid>
 
-		<Path x:Name="InputArrow" Style="{StaticResource Input1Arrow}" RenderOptions.EdgeMode="Aliased" Stretch="Fill" Fill="#FFFFFF80" Data="F1 M 4.728,0.234667L 4.728,3.90133L 4.69733,3.87067L -3.17891e-007,8.568L 4.69733,13.3027L 4.728,13.2653L 4.728,17.3333L 14.932,17.3333L 14.932,0.234667" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="27" Visibility="Hidden" />
-		<Rectangle x:Name="InfoBoxBorder" Grid.Column="1" Fill="#FFB0B0B0" Margin="20,20,20,0" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Height="210" Visibility="Hidden" />
-		<Rectangle x:Name="InfoBox" Grid.Column="1" Fill="#FFFFFF80" Margin="20,20,21,21" VerticalAlignment="Top" Height="209" Visibility="Hidden" />
-		<TextBlock x:Name="TextBoxTitle" Grid.Column="1" Height="43" Margin="20,20,21,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Padding="15,10,0,0" />
-		<TextBlock x:Name="TextBoxContent" Grid.Column="1" Margin="20,63.549,21,0" TextWrapping="Wrap" Padding="15,10,10,0" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Height="165.451" />
+		<Path x:Name="InputArrow" Grid.Row="1" Grid.Column="1" Style="{StaticResource Input1Arrow}" RenderOptions.EdgeMode="Aliased" Stretch="Fill" Fill="#FFFFFF80" Data="F1 M 4.728,0.234667L 4.728,3.90133L 4.69733,3.87067L -3.17891e-007,8.568L 4.69733,13.3027L 4.728,13.2653L 4.728,17.3333L 14.932,17.3333L 14.932,0.234667" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="27" Visibility="Hidden" />
+		<Rectangle x:Name="InfoBoxBorder" Grid.Row="1" Grid.Column="1" Fill="#FFB0B0B0" Margin="20,20,20,0" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Height="160" Visibility="Hidden" />
+		<Rectangle x:Name="InfoBox" Grid.Row="1" Grid.Column="1" Fill="#FFFFFF80" Margin="20" VerticalAlignment="Top" Height="159" Visibility="Hidden" />
+		<TextBlock x:Name="TextBoxTitle" Grid.Row="1" Grid.Column="1" Height="43" Margin="20,20,21,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Padding="15,10,0,0" />
+		<TextBlock x:Name="TextBoxContent" Grid.Row="1" Grid.Column="1" Margin="20,63.549,21,0" TextWrapping="Wrap" Padding="15,10,15,0" ClipToBounds="True" SnapsToDevicePixels="True" VerticalAlignment="Top" Height="120" />
 	</Grid>
 </UserControl>
