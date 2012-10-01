@@ -23,6 +23,29 @@
 			</Setter>
 		</Style>
 
+		<Style x:Key="LeftBarConnButton" TargetType="{x:Type Button}">
+			<Setter Property="Background" Value="LightGray" />
+			<Setter Property="Height" Value="32.5" />
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+			<Setter Property="Margin" Value="0,0,0,2" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border x:Name="border" BorderThickness="0" Padding="10,0" CornerRadius="0" Background="{TemplateBinding Background}">
+							<Grid>
+								<ContentPresenter VerticalAlignment="Center" x:Name="content" />
+							</Grid>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FF5C8AEC" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
 		<Style x:Key="ScrollTop" TargetType="{x:Type Button}">
 			<Setter Property="Background" Value="Transparent" />
 			<Setter Property="Foreground" Value="#FF7E7E7E" />
@@ -118,13 +141,29 @@
 			
 			<ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1" x:Name="ConnectionPanel">
 				<StackPanel Margin="0" Orientation="Vertical">
-					<Button x:Name="AddConnectionButton_Copy" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
-					<Button x:Name="AddConnectionButton_Copy1" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
-					<Button x:Name="AddConnectionButton_Copy2" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
-					<Button x:Name="AddConnectionButton_Copy3" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
-					<Button x:Name="AddConnectionButton_Copy4" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
-					<Button x:Name="AddConnectionButton_Copy5" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
-					<Button x:Name="AddConnectionButton_Copy6" Content="Add a new connection" Style="{DynamicResource LeftBarButton}" VerticalAlignment="Top" Margin="0,0,0,40" />
+					<Button Style="{DynamicResource LeftBarConnButton}" VerticalAlignment="Top">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Debian"/>
+							<TextBlock Grid.Column="1" Text="127.0.0.1" HorizontalAlignment="Right" />
+						</Grid>
+					</Button>
+
+					<Button Style="{DynamicResource LeftBarConnButton}" VerticalAlignment="Top">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock Text="Ubuntu"/>
+							<TextBlock Grid.Column="1" Text="nightmare.panicbnc.net" HorizontalAlignment="Right" />
+						</Grid>
+					</Button>
 				</StackPanel>
 			</ScrollViewer>
 		</Grid>
