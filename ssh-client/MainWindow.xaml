@@ -51,7 +51,7 @@
 		</Style>
 		
 		<Style x:Key="LeftBarConnButtonGreen" BasedOn="{StaticResource LeftBarConnButton}" TargetType="Button">
-			<Setter Property="Control.Background" Value="#FFDCFFAA" />
+			<Setter Property="Control.Background" Value="#FF8ADA6C" />
 		</Style>
 
 		<Style x:Key="ScrollTop" TargetType="Button">

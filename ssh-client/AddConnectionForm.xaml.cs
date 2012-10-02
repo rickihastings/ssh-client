@@ -39,6 +39,8 @@ namespace ssh_client
 			InputBox4.LostFocus += (o, a) => OnRemoveFocus();
 			
 			AddSessionButton.Click += (o, a) => OnAddSessionButtonClick();
+			ConnectSessionButton.Click += (o, a) => OnConnectSessionButtonClick();
+			//RemoveSessionButton.Click += (o, a) => OnRemoveSessionButtonClick();
 		}
 		
 		public void AssignSessionToForm(Dictionary<string, string> s)
@@ -50,6 +52,7 @@ namespace ssh_client
 			InputBox4.Text = s["lusername"];
 			
 			// enable certain form fields that are only available to editmode
+			AddSessionButton.Content = "Edit Session";
 			ConnectSessionButton.IsEnabled = true;
 			ConnectSessionButton.Visibility = Visibility.Visible;
 			RemoveSessionButton.IsEnabled = true;
@@ -199,6 +202,21 @@ namespace ssh_client
 			
 			// save the database
 			mw.databaseSave();
+		}
+		
+		public void OnConnectSessionButtonClick()
+		{
+			// shouldn't be here anyway, but we are so let's bail.
+			if (!editMode)
+				return;
+			
+			// update the element on screen
+			Grid btnGrid = (Grid) App.Current.MainWindow.FindName("SessionButtonID_" + session["name"]);
+			Button btn = (Button) btnGrid.Parent;
+			btn.Style = (Style) FindResource("LeftBarConnButtonGreen");
+			
+			// show the connect window and hide the form
+			//App.Current.MainWindow.sessList[session["name"]];
 		}
 	}
 }

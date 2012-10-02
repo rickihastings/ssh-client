@@ -34,25 +34,34 @@ namespace ssh_client
 			ScrollDownButton.Click += (o, e) => OnScrollDownButtonClick();
 			
 			databaseLoad();
-			
-			AddConnectionForm acf = (AddConnectionForm) LayoutRoot.FindName("AddConnectionForm");
-			acf.AssignSessionToForm(sessList["Debian"]);
 		}
 		
 		public void OnAddConnectionButtonClick()
 		{
 			// hide all controls BUT the AddConnectionForm
 			foreach (UserControl c in ContentWindowTabs.Children)
+				c.Visibility = Visibility.Hidden;
+			
+			AddConnectionForm.Visibility = Visibility.Visible;
+		}
+		
+		public void OnSessionButtonClick(Dictionary<string, string> session)
+		{
+			// determine whether the session is connected or not
+			// so we know what to do with it.
+			if (session["connected"] == "false")
 			{
-				if (c.Name == "AddConnectionForm")
-					AddConnectionForm.Visibility = Visibility.Visible;
-				else
+				foreach (UserControl c in ContentWindowTabs.Children)
 					c.Visibility = Visibility.Hidden;
+				
+				AddConnectionForm acf = (AddConnectionForm) FindName("EditSessionFormID_" + session["name"]);
+				acf.Visibility = Visibility.Visible;
 			}
 		}
 		
 		public void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs args)
 		{
+			// handle window dragging and double clicking to maximize
 			if (args.ClickCount == 2)
 			{
 				WindowControls wc = (WindowControls) LayoutRoot.FindName("WindowControls");
@@ -171,12 +180,25 @@ namespace ssh_client
 			// style the button and some other stuff
 			btn.Style = (Style) FindResource("LeftBarConnButtonRed");
 			btn.VerticalAlignment = VerticalAlignment.Top;
+			LayoutRoot.RegisterName("SessionButtonID_" + name, grid);
+			
+			// handle the click event for the button
+			btn.Click += (o, e) => OnSessionButtonClick(sessList[newSession["name"]]);
 			
 			// add the button to the stack panel
 			grid.Children.Add(tb1);
 			grid.Children.Add(tb2);
 			btn.Content = grid;
-			ConnectionStackPanel.Children.Add(btn);	
+			ConnectionStackPanel.Children.Add(btn);
+			
+			// create a edit connection form
+			AddConnectionForm acf = new AddConnectionForm();
+			acf.AssignSessionToForm(sessList[newSession["name"]]);
+			acf.Visibility = Visibility.Hidden;
+			
+			// assign a name to it and add it to the layout
+			LayoutRoot.RegisterName("EditSessionFormID_" + name, acf);
+			ContentWindowTabs.Children.Add(acf);
 		}
 		
 		public void updateSession(Dictionary<string, string> session, string name, string host, string port, string lusername)
@@ -192,10 +214,28 @@ namespace ssh_client
 			newSession["port"] = port;
 			newSession["lusername"] = lusername;
 			newSession["connected"] = "false";
+			sessList.Remove(session["name"]);
+			sessList[name] = newSession;
 			
-			// alter the session record
-			string oldName = session["name"];
-			sessList[oldName] = newSession;
+			// update the element on screen
+			Grid btnGrid = (Grid) FindName("SessionButtonID_" + session["name"]);
+			AddConnectionForm acf = (AddConnectionForm) FindName("EditSessionFormID_" + session["name"]);
+			
+			foreach (TextBlock tb in btnGrid.Children)
+			{
+				MessageBox.Show(tb.Text);
+				if (tb.Text == session["name"])
+					tb.Text = name;
+				else if (tb.Text == session["host"])
+					tb.Text = host;
+			}
+			
+			// update element ids etc
+			LayoutRoot.UnregisterName("SessionButtonID_" + session["name"]);
+			LayoutRoot.UnregisterName("EditSessionFormID_" + session["name"]);
+			LayoutRoot.RegisterName("SessionButtonID_" + name, btnGrid);
+			LayoutRoot.RegisterName("EditSessionFormID_" + name, acf);
+			acf.AssignSessionToForm(newSession);
 			
 			databaseSave();
 		}
