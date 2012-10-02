@@ -20,15 +20,18 @@ namespace ssh_client
 	/// </summary>
 	public partial class AddConnectionForm : UserControl
 	{
+		bool editMode = false;
+		Dictionary<string, string> session;
+		
 		public AddConnectionForm()
 		{
 			InitializeComponent();
 			
 			// As usual, bind our events.
-			InputBox1.GotFocus += (o, a) => this.OnInputBox1Focus();
-			InputBox2.GotFocus += (o, a) => this.OnInputBox2Focus();
-			InputBox3.GotFocus += (o, a) => this.OnInputBox3Focus();
-			InputBox4.GotFocus += (o, a) => this.OnInputBox4Focus();
+			InputBox1.GotFocus += (o, a) => OnInputBox1Focus();
+			InputBox2.GotFocus += (o, a) => OnInputBox2Focus();
+			InputBox3.GotFocus += (o, a) => OnInputBox3Focus();
+			InputBox4.GotFocus += (o, a) => OnInputBox4Focus();
 		
 			InputBox1.LostFocus += (o, a) => OnRemoveFocus();
 			InputBox2.LostFocus += (o, a) => OnRemoveFocus();
@@ -36,6 +39,25 @@ namespace ssh_client
 			InputBox4.LostFocus += (o, a) => OnRemoveFocus();
 			
 			AddSessionButton.Click += (o, a) => OnAddSessionButtonClick();
+		}
+		
+		public void AssignSessionToForm(Dictionary<string, string> s)
+		{
+			// fill in the form fields
+			InputBox1.Text = s["name"];
+			InputBox2.Text = s["host"];
+			InputBox3.Text = s["port"];
+			InputBox4.Text = s["lusername"];
+			
+			// enable certain form fields that are only available to editmode
+			ConnectSessionButton.IsEnabled = true;
+			ConnectSessionButton.Visibility = Visibility.Visible;
+			RemoveSessionButton.IsEnabled = true;
+			RemoveSessionButton.Visibility = Visibility.Visible;
+			
+			// alter editmode and session variables
+			session = s;
+			editMode = true;
 		}
 		
 		public void MoveToolTipBox(double m0, double m1, double m2, double m3)
@@ -168,7 +190,15 @@ namespace ssh_client
 			// no errors, continue, first hide any error boxes
 			ErrorBox.Visibility = Visibility.Collapsed;
 			
-			//XmlNode userNode = xmlDoc.CreateElement("sessions");
+			// success, handle this elsewhere, quite a bit of code. based on the value of editmode
+			MainWindow mw = (MainWindow) App.Current.MainWindow;
+			if (editMode)
+				mw.updateSession(session, SessionName, Hostname, Port, Username);
+			else
+				mw.createNewSession(SessionName, Hostname, Port, Username);
+			
+			// save the database
+			mw.databaseSave();
 		}
 	}
 }
